@@ -1,0 +1,28 @@
+proxy:
+  title: Landscape ShinyProxy Toolbox
+  port: 8080
+  authentication: none
+  server:
+    servlet:
+      context-path: /app
+  docker:
+    url: http://host.docker.internal:2375
+    internal-networking: true
+    container-network: toolbox-net
+  work-directory: /opt/shinyproxy
+  specs:
+  - id: benchmark-exploration-tool
+    display-name: Benchmark Exploration Tool
+    description: A tool for visually exploring ecological data to help establish quantitative benchmarks for land management.
+    container-cmd: ["R", "-e", "shiny::runApp('/benchmark-exploration-tool', host = '0.0.0.0', port = 3838)"]
+    container-image: landscapedatacommons/benchmark-exploration-tool:4.0.5
+    container-network: "${proxy.docker.container-network}"
+  - id: balanced-design-tool
+    display-name: Balanced Design Tool
+    description: A tool for generating spatially-balanced point sampling designs for inventory and monitoring efforts.
+    container-cmd: ["R", "-e", "shiny::runApp('/balanced-design-tool', host = '0.0.0.0', port = 3838)"]
+    container-image: landscapedatacommons/balanced-design-tool:4.0.5
+    container-network: "${proxy.docker.container-network}"
+logging:
+  file:
+    /log/shinyproxy.log

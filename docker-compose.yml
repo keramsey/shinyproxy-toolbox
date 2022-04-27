@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+  shinyproxy-toolbox:
+    image: landscapedatacommons/shinyproxy-toolbox:2.6.1
+    build: .
+    container_name: shinyproxy-toolbox
+#    restart: on-failure
+    restart: unless-stopped
+    networks:
+      - toolbox-net
+    ports:
+      - 8092:8080
+    volumes:
+#      - /var/run/docker.sock:/var/run/docker.sock
+      - ./shinyproxy-logs/server:/log
+      - ./shinyproxy-logs/container:/container-logs
+      - ./application.yml:/opt/shinyproxy/application.yml
+  benchmark-exploration-tool:
+    image: landscapedatacommons/benchmark-exploration-tool:4.0.5
+    container_name: benchmark-exploration-tool
+    networks:
+      - toolbox-net
+  #balanced-design-tool:
+  #  image: landscapedatacommons/balanced-design-tool:4.0.5
+  #  container_name: balanced-design-tool
+  #  networks:
+  #    - toolbox-net
+networks:
+  toolbox-net:
+    driver: bridge
+    name: toolbox-net
