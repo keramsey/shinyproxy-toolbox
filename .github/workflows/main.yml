@@ -32,6 +32,6 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
-          context: ./src/
+          context: ./
           push: true
           tags: ${{ secrets.TAG_OWNER }}/${{ secrets.TAG_REPO }}:${{ secrets.TAG_VERSION }}
