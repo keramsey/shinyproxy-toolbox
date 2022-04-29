@@ -2,7 +2,6 @@ version: "3.9"
 services:
   shinyproxy-toolbox:
     image: landscapedatacommons/shinyproxy-toolbox:2.6.1
-    build: .
     container_name: shinyproxy-toolbox
 #    restart: on-failure
     restart: unless-stopped
