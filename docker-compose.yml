@@ -19,11 +19,11 @@ services:
     container_name: benchmark-exploration-tool
     networks:
       - toolbox-net
-  #balanced-design-tool:
-  #  image: landscapedatacommons/balanced-design-tool:4.0.5
-  #  container_name: balanced-design-tool
-  #  networks:
-  #    - toolbox-net
+  balanced-design-tool:
+    image: landscapedatacommons/balanced-design-tool:4.0.5
+    container_name: balanced-design-tool
+    networks:
+      - toolbox-net
 networks:
   toolbox-net:
     driver: bridge
