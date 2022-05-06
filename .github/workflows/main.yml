@@ -34,4 +34,4 @@ jobs:
         with:
           context: ./
           push: true
-          tags: ${{ secrets.TAG_OWNER }}/${{ secrets.TAG_REPO }}:${{ secrets.TAG_VERSION }}
+          tags: landscapedatacommons/shinyproxy-toolbox:2.6.1
