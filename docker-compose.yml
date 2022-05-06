@@ -2,7 +2,7 @@ version: "3.9"
 services:
   shinyproxy-toolbox:
     image: landscapedatacommons/shinyproxy-toolbox:2.6.1
-    container_name: shinyproxy-toolbox
+#    container_name: shinyproxy-toolbox
 #    restart: on-failure
     restart: unless-stopped
     networks:
@@ -16,12 +16,12 @@ services:
       - ./application.yml:/opt/shinyproxy/application.yml
   benchmark-exploration-tool:
     image: landscapedatacommons/benchmark-exploration-tool:4.0.5
-    container_name: benchmark-exploration-tool
+#    container_name: benchmark-exploration-tool
     networks:
       - toolbox-net
   balanced-design-tool:
     image: landscapedatacommons/balanced-design-tool:4.0.5
-    container_name: balanced-design-tool
+ #   container_name: balanced-design-tool
     networks:
       - toolbox-net
 networks:
