@@ -10,7 +10,7 @@ services:
       placement:
         max_replicas_per_node: 1
       update_config:
-        parellelism: 1
+        parallelism: 1
         delay: 10s
         order: start-first
         failure_action: rollback
@@ -35,7 +35,7 @@ services:
       placement:
         max_replicas_per_node: 1
       update_config:
-        parellelism: 1
+        parallelism: 1
         delay: 10s
         order: start-first
         failure_action: rollback
@@ -53,7 +53,7 @@ services:
       placement:
         max_replicas_per_node: 1
       update_config:
-        parellelism: 1
+        parallelism: 1
         delay: 10s
         order: start-first
         failure_action: rollback
