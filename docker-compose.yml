@@ -64,5 +64,5 @@ services:
       - toolbox-net
 networks:
   toolbox-net:
-    driver: bridge
+    driver: overlay
     name: toolbox-net
