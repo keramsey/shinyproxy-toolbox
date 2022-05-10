@@ -10,9 +10,10 @@ services:
       placement:
         max_replicas_per_node: 1
       update_config:
-        parellelism: 2
+        parellelism: 1
         delay: 10s
         order: start-first
+        failure_action: rollback
       restart_policy:
         condition: replicated
     restart: on-failure
@@ -34,9 +35,10 @@ services:
       placement:
         max_replicas_per_node: 1
       update_config:
-        parellelism: 2
+        parellelism: 1
         delay: 10s
         order: start-first
+        failure_action: rollback
       restart_policy:
         condition: replicated
 #    container_name: benchmark-exploration-tool
@@ -44,16 +46,17 @@ services:
       - toolbox-net
   balanced-design-tool:
     image: landscapedatacommons/balanced-design-tool:4.0.5
-     deploy:
+    deploy:
       mode: replicated
       replicas: 2
       endpoint_mode: vip
       placement:
         max_replicas_per_node: 1
       update_config:
-        parellelism: 2
+        parellelism: 1
         delay: 10s
         order: start-first
+        failure_action: rollback
       restart_policy:
         condition: replicated
 #   container_name: balanced-design-tool
