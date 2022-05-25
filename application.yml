@@ -8,7 +8,7 @@ proxy:
   docker:
     url: http://host.docker.internal:2375
     internal-networking: true
-#    container-network: toolbox-net
+    container-network: shinyproxy-toolbox_default
   work-directory: /opt/shinyproxy
   specs:
   - id: benchmark-exploration-tool
@@ -16,13 +16,13 @@ proxy:
     description: A tool for visually exploring ecological data to help establish quantitative benchmarks for land management.
     container-cmd: ["R", "-e", "shiny::runApp('/benchmark-exploration-tool', host = '0.0.0.0', port = 3838)"]
     container-image: landscapedatacommons/benchmark-exploration-tool:4.0.5
-#    container-network: "${proxy.docker.container-network}"
+    container-network: "${proxy.docker.container-network}"
   - id: balanced-design-tool
     display-name: Balanced Design Tool
     description: A tool for generating spatially-balanced point sampling designs for inventory and monitoring efforts.
     container-cmd: ["R", "-e", "shiny::runApp('/balanced-design-tool', host = '0.0.0.0', port = 3838)"]
     container-image: landscapedatacommons/balanced-design-tool:4.0.5
-#    container-network: "${proxy.docker.container-network}"
+    container-network: "${proxy.docker.container-network}"
 logging:
   file:
     /log/shinyproxy.log
