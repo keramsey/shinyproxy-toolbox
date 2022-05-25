@@ -39,8 +39,6 @@ services:
         delay: 10s
         order: start-first
         failure_action: rollback
-    expose:
-        - "3838"
 #    container_name: benchmark-exploration-tool
 #    networks:
 #      - toolbox-net
@@ -57,8 +55,6 @@ services:
         delay: 10s
         order: start-first
         failure_action: rollback
-    expose:
-        - "3838"
 #   container_name: balanced-design-tool
 #    networks:
 #      - toolbox-net
