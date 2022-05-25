@@ -7,8 +7,8 @@ services:
       mode: replicated
       replicas: 2
       endpoint_mode: vip
-      placement:
-        max_replicas_per_node: 1
+#      placement:
+#        max_replicas_per_node: 1
       update_config:
         parallelism: 1
         delay: 10s
@@ -17,8 +17,8 @@ services:
       restart_policy:
         condition: on-failure
     restart: on-failure
-    networks:
-      - toolbox-net
+#    networks:
+#      - toolbox-net
     ports:
       - 8092:8080
     volumes:
@@ -32,33 +32,38 @@ services:
       mode: replicated
       replicas: 2
       endpoint_mode: vip
-      placement:
-        max_replicas_per_node: 1
+#      placement:
+#        max_replicas_per_node: 1
       update_config:
         parallelism: 1
         delay: 10s
         order: start-first
         failure_action: rollback
+    expose:
+        - "3838"
 #    container_name: benchmark-exploration-tool
-    networks:
-      - toolbox-net
+#    networks:
+#      - toolbox-net
   balanced-design-tool:
     image: landscapedatacommons/balanced-design-tool:4.0.5
     deploy:
       mode: replicated
       replicas: 2
       endpoint_mode: vip
-      placement:
-        max_replicas_per_node: 1
+#      placement:
+#        max_replicas_per_node: 1
       update_config:
         parallelism: 1
         delay: 10s
         order: start-first
         failure_action: rollback
+    expose:
+        - "3838"
 #   container_name: balanced-design-tool
-    networks:
-      - toolbox-net
-networks:
-  toolbox-net:
-    driver: overlay
-    name: toolbox-net
+#    networks:
+#      - toolbox-net
+
+#networks:
+#  toolbox-net:
+#    driver: overlay
+#    name: toolbox-net
