@@ -1,6 +1,6 @@
 proxy:
   title: Landscape ShinyProxy Toolbox
-  port: 8080
+  port: 8080:8080
   authentication: none
   server:
     servlet:
@@ -14,7 +14,7 @@ proxy:
   - id: benchmark-exploration-tool
     display-name: Benchmark Exploration Tool
     description: A tool for visually exploring ecological data to help establish quantitative benchmarks for land management.
-    container-cmd: ["R", "-e", "shiny::runApp('/benchmark-exploration-tool', host = '0.0.0.0', port = 3838)"]
+    container-cmd: ["R", "-e", "shiny::runApp('/benchmark-exploration-tool', host = '0.0.0.0', port = 3839)"]
     container-image: landscapedatacommons/benchmark-exploration-tool:4.0.5
     container-network: "${proxy.docker.container-network}"
   - id: balanced-design-tool
