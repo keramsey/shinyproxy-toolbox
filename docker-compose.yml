@@ -17,8 +17,8 @@ services:
       restart_policy:
         condition: on-failure
     restart: on-failure
-#    networks:
-#      - toolbox-net
+    networks:
+      - shinyproxy-toolbox_default
     ports:
       - 8092:8080
     volumes:
@@ -40,8 +40,8 @@ services:
         order: start-first
         failure_action: rollback
 #    container_name: benchmark-exploration-tool
-#    networks:
-#      - toolbox-net
+    networks:
+      - shinyproxy-toolbox_default
   balanced-design-tool:
     image: landscapedatacommons/balanced-design-tool:4.0.5
     deploy:
@@ -56,10 +56,10 @@ services:
         order: start-first
         failure_action: rollback
 #   container_name: balanced-design-tool
-#    networks:
-#      - toolbox-net
+    networks:
+      - shinyproxy-toolbox_default
 
-#networks:
-#  toolbox-net:
-#    driver: overlay
-#    name: toolbox-net
+networks:
+  shinyproxy-toolbox_default:
+    driver: bridge
+    name: shinyproxy-toolbox_default
