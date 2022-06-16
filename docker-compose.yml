@@ -61,5 +61,5 @@ services:
 
 networks:
   shinyproxy-toolbox_default:
-    driver: bridge
+    driver: overlay
     name: shinyproxy-toolbox_default
