@@ -62,4 +62,6 @@ services:
 networks:
   shinyproxy-toolbox_default:
     driver: overlay
+    driver_opts:
+      scope: swarm
     name: shinyproxy-toolbox_default
