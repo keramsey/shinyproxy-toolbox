@@ -7,8 +7,8 @@ services:
       mode: replicated
       replicas: 1
       endpoint_mode: vip
-#      placement:
-#        max_replicas_per_node: 1
+      placement:
+        max_replicas_per_node: 1
       update_config:
         parallelism: 1
         delay: 10s
@@ -17,8 +17,8 @@ services:
       restart_policy:
         condition: on-failure
     restart: on-failure
-#    networks:
-#      - shinyproxy-toolbox_default
+    networks:
+      - shinyproxy-toolbox_default
     ports:
       - 8092:8080
     volumes:
@@ -32,36 +32,36 @@ services:
       mode: replicated
       replicas: 1
       endpoint_mode: vip
-#      placement:
-#        max_replicas_per_node: 1
+      placement:
+        max_replicas_per_node: 1
       update_config:
         parallelism: 1
         delay: 10s
         order: start-first
         failure_action: rollback
 #    container_name: benchmark-exploration-tool
-#    networks:
-#      - shinyproxy-toolbox_default
+    networks:
+      - shinyproxy-toolbox_default
   balanced-design-tool:
     image: landscapedatacommons/balanced-design-tool:4.0.5
     deploy:
       mode: replicated
       replicas: 1
       endpoint_mode: vip
-#      placement:
-#        max_replicas_per_node: 1
+      placement:
+        max_replicas_per_node: 1
       update_config:
         parallelism: 1
         delay: 10s
         order: start-first
         failure_action: rollback
 #   container_name: balanced-design-tool
-#    networks:
-#      - shinyproxy-toolbox_default
+    networks:
+      - shinyproxy-toolbox_default
 
-#networks:
-#  shinyproxy-toolbox_default:
-#    driver: overlay
+networks:
+  shinyproxy-toolbox_default:
+    driver: overlay
 #    driver_opts:
 #      scope: swarm
-#    name: shinyproxy-toolbox_default
+    name: shinyproxy-toolbox_default
