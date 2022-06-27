@@ -9,9 +9,15 @@ proxy:
   docker:
     url: http://host.docker.internal:2375
     internal-networking: true
-    #container-network: shinyproxy-toolbox_default
+    container-network: shinyproxy-toolbox_default
   work-directory: /opt/shinyproxy
   specs:
+  - id: 01_hello
+    display-name: Hello Application
+    description: Application which demonstrates the basics of a Shiny app
+    container-cmd: ["R", "-e", "shinyproxy::run_01_hello()"]
+    container-image: openanalytics/shinyproxy-demo
+    container-network: "${proxy.docker.container-network}"
   - id: benchmark-exploration-tool
     display-name: Benchmark Exploration Tool
     description: A tool for visually exploring ecological data to help establish quantitative benchmarks for land management.
