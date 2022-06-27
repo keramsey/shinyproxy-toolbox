@@ -7,7 +7,7 @@ proxy:
       context-path: /app
   container-backend: docker-swarm
   docker:
-    #url: http://host.docker.internal:2375
+    url: http://host.docker.internal:2375
     internal-networking: true
     #container-network: shinyproxy-toolbox_default
   work-directory: /opt/shinyproxy
@@ -16,6 +16,7 @@ proxy:
     display-name: Benchmark Exploration Tool
     description: A tool for visually exploring ecological data to help establish quantitative benchmarks for land management.
     container-cmd: ["R", "-e", "shiny::runApp('/benchmark-exploration-tool', host = '0.0.0.0', port = 3839)"]
+    #container-cmd: ["R", "-e", "shiny::runApp('/benchmark-exploration-tool', host = '0.0.0.0', port = 3839)"]
     container-image: landscapedatacommons/benchmark-exploration-tool:4.0.5
     container-network: shinyproxy-toolbox_default
     #container-network: "${proxy.docker.container-network}"
