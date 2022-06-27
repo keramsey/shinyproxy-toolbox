@@ -39,6 +39,8 @@ services:
         delay: 10s
         order: start-first
         failure_action: rollback
+    ports:
+      - 3839:3839
 #    container_name: benchmark-exploration-tool
 #    networks:
 #      - shinyproxy-toolbox_default
@@ -55,6 +57,8 @@ services:
         delay: 10s
         order: start-first
         failure_action: rollback
+    ports:
+      - 3838:3838
 #   container_name: balanced-design-tool
 #    networks:
 #      - shinyproxy-toolbox_default
