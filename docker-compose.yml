@@ -18,12 +18,9 @@ services:
         condition: on-failure
 #    restart: on-failure
     networks:
-      - shinyproxy-toolbox_default
+      - traefik-public
+      - shinyproxy-net
     ports:
-#      - target: 8080
-#        published: 80
-#        protocol: tcp
-#        mode: host
       - 80:8080
     volumes:
 #      - /var/run/docker.sock:/var/run/docker.sock
@@ -45,12 +42,8 @@ services:
         order: start-first
         failure_action: rollback
     networks:
-      - shinyproxy-toolbox_default
+      - shinyproxy-net
     ports:
-#      - target: 3839
-#        published: 3839
-#        protocol: tcp
-#        mode: host
       - 3839:3839
   balanced-design-tool:
     image: landscapedatacommons/balanced-design-tool:4.0.5
@@ -67,16 +60,12 @@ services:
         order: start-first
         failure_action: rollback
     networks:
-      - shinyproxy-toolbox_default
+      - shinyproxy-net
     ports:
-#     - target: 3838
-#       published: 3838
-#       protocol: tcp
-#       mode: host
      - 3838:3838
 
 networks:
-  shinyproxy-toolbox_default:
-    driver: overlay
-    attachable: true
-    name: shinyproxy-toolbox_default
+  - traefik-public:
+      external: true
+  - shinyproxy-net:
+      external: true
