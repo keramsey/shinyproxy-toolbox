@@ -16,7 +16,8 @@ services:
         failure_action: rollback
       restart_policy:
         condition: on-failure
-    restart: on-failure
+      dockerfile: Dockerfie
+#    restart: on-failure
     networks:
       - shinyproxy-toolbox_default
     ports:
@@ -78,7 +79,5 @@ services:
 networks:
   shinyproxy-toolbox_default:
     driver: overlay
-#    driver_opts:
-#      scope: swarm
     attachable: true
     name: shinyproxy-toolbox_default
