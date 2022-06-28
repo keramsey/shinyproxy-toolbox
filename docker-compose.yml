@@ -6,7 +6,7 @@ services:
     deploy:
       mode: replicated
       replicas: 1
-      endpoint_mode: vip
+      endpoint_mode: dnsrr
       placement:
         max_replicas_per_node: 1
       update_config:
@@ -31,7 +31,7 @@ services:
     deploy:
       mode: replicated
       replicas: 1
-      endpoint_mode: vip
+      endpoint_mode: dnsrr
       placement:
         max_replicas_per_node: 1
       update_config:
@@ -49,7 +49,7 @@ services:
     deploy:
       mode: replicated
       replicas: 1
-      endpoint_mode: vip
+      endpoint_mode: dnsrr
       placement:
         max_replicas_per_node: 1
       update_config:
