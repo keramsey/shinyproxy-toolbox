@@ -6,7 +6,7 @@ services:
     deploy:
       mode: replicated
       replicas: 1
-      endpoint_mode: dnsrr
+      endpoint_mode: vip
       placement:
         max_replicas_per_node: 1
       update_config:
@@ -20,11 +20,11 @@ services:
     networks:
       - shinyproxy-toolbox_default
     ports:
-      - target: 8080
-        published: 80
-        protocol: tcp
-        mode: host
-#      - 80:8080
+#      - target: 8080
+#        published: 80
+#        protocol: tcp
+#        mode: host
+      - 80:8080
     volumes:
 #      - /var/run/docker.sock:/var/run/docker.sock
       - ./shinyproxy-logs/server:/log
@@ -32,10 +32,11 @@ services:
       - ./application.yml:/opt/shinyproxy/application.yml
   benchmark-exploration-tool:
     image: landscapedatacommons/benchmark-exploration-tool:4.0.5
+#    container_name: benchmark-exploration-tool
     deploy:
       mode: replicated
       replicas: 1
-      endpoint_mode: dnsrr
+      endpoint_mode: vip
       placement:
         max_replicas_per_node: 1
       update_config:
@@ -43,21 +44,21 @@ services:
         delay: 10s
         order: start-first
         failure_action: rollback
-    ports:
-      - target: 3839
-        published: 3839
-        protocol: tcp
-        mode: host
-#      - 3839:3839
-#    container_name: benchmark-exploration-tool
     networks:
       - shinyproxy-toolbox_default
+    ports:
+#      - target: 3839
+#        published: 3839
+#        protocol: tcp
+#        mode: host
+      - 3839:3839
   balanced-design-tool:
     image: landscapedatacommons/balanced-design-tool:4.0.5
+#   container_name: balanced-design-tool
     deploy:
       mode: replicated
       replicas: 1
-      endpoint_mode: dnsrr
+      endpoint_mode: vip
       placement:
         max_replicas_per_node: 1
       update_config:
@@ -65,15 +66,14 @@ services:
         delay: 10s
         order: start-first
         failure_action: rollback
-    ports:
-     - target: 3838
-       published: 3838
-       protocol: tcp
-       mode: host
-#     - 3838:3838
-#   container_name: balanced-design-tool
     networks:
       - shinyproxy-toolbox_default
+    ports:
+#     - target: 3838
+#       published: 3838
+#       protocol: tcp
+#       mode: host
+     - 3838:3838
 
 networks:
   shinyproxy-toolbox_default:
