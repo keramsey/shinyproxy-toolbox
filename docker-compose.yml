@@ -65,7 +65,9 @@ services:
      - 3838:3838
 
 networks:
-  - traefik-public:
-      external: true
-  - shinyproxy-net:
-      external: true
+  default:
+    name: traefik-public
+    external: true
+  shinyproxy-net:
+    name: shinyproxy-net
+    external: true
