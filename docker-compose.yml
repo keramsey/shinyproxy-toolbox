@@ -20,13 +20,12 @@ services:
     networks:
       - shinyproxy-toolbox_default
     ports:
-      - 8092:8080
+      - 80:8080
     volumes:
 #      - /var/run/docker.sock:/var/run/docker.sock
-
-#      - ./shinyproxy-logs/server:/log
-#      - ./shinyproxy-logs/container:/container-logs
-#      - ./application.yml:/opt/shinyproxy/application.yml
+      - ./shinyproxy-logs/server:/log
+      - ./shinyproxy-logs/container:/container-logs
+      - ./application.yml:/opt/shinyproxy/application.yml
   benchmark-exploration-tool:
     image: landscapedatacommons/benchmark-exploration-tool:4.0.5
     deploy:
