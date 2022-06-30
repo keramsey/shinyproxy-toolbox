@@ -12,7 +12,6 @@ services:
       update_config:
         parallelism: 1
         delay: 10s
-        order: start-first
         failure_action: rollback
       restart_policy:
         condition: on-failure
@@ -38,7 +37,6 @@ services:
       update_config:
         parallelism: 1
         delay: 10s
-        order: start-first
         failure_action: rollback
 #    container_name: benchmark-exploration-tool
     networks:
@@ -57,7 +55,6 @@ services:
       update_config:
         parallelism: 1
         delay: 10s
-        order: start-first
         failure_action: rollback
 #   container_name: balanced-design-tool
     networks:
