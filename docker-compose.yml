@@ -20,7 +20,7 @@ services:
       - default
 #      - shinyproxy-toolbox_default
     ports:
-      - 80:8080
+      - 8092:8088
     volumes:
 #      - /var/run/docker.sock:/var/run/docker.sock
       - ./shinyproxy-logs/server:/log

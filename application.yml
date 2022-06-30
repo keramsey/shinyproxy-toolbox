@@ -1,10 +1,10 @@
 proxy:
   title: Landscape ShinyProxy Toolbox
-  port: 8080
+  port: 8088
   authentication: none
   server:
     servlet:
-      context-path: /app
+      context-path: /
   docker:
     url: http://host.docker.internal:2375
     internal-networking: true
