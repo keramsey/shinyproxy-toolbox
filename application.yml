@@ -4,11 +4,12 @@ proxy:
   authentication: none
   server:
     servlet:
-      context-path: /
+      context-path: /app
   docker:
-    #url: http://host.docker.internal:2375
+    url: http://host.docker.internal:2375
     internal-networking: true
-    container-network: shinyproxy-toolbox_default
+    container-network: default
+#    container-network: shinyproxy-toolbox_default
   work-directory: /opt/shinyproxy
   specs:
   - id: benchmark-exploration-tool
