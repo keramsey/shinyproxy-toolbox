@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3.3"
 services:
   shinyproxy-toolbox:
     image: landscapedatacommons/shinyproxy-toolbox:2.6.1
@@ -17,10 +17,11 @@ services:
       restart_policy:
         condition: on-failure
     restart: on-failure
-#    networks:
+    networks:
+      - default
 #      - shinyproxy-toolbox_default
     ports:
-      - 8092:8080
+      - 80:8080
     volumes:
 #      - /var/run/docker.sock:/var/run/docker.sock
       - ./shinyproxy-logs/server:/log
@@ -40,8 +41,11 @@ services:
         order: start-first
         failure_action: rollback
 #    container_name: benchmark-exploration-tool
-#    networks:
+    networks:
+      - default
 #      - shinyproxy-toolbox_default
+    ports:
+      - 3839:3839
   balanced-design-tool:
     image: landscapedatacommons/balanced-design-tool:4.0.5
     deploy:
@@ -56,12 +60,15 @@ services:
         order: start-first
         failure_action: rollback
 #   container_name: balanced-design-tool
-#    networks:
+    networks:
+      - default
 #      - shinyproxy-toolbox_default
 
-#networks:
+networks:
+  default:
+    driver: overlay
+    attachable: true
 #  shinyproxy-toolbox_default:
-#    driver: overlay
 #    driver_opts:
 #      scope: swarm
 #    name: shinyproxy-toolbox_default
