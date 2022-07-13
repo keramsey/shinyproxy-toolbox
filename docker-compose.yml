@@ -6,7 +6,7 @@ services:
     ports:
       - 8080
     networks:
-      - traefik_public
+      - traefik-public
       - sp-net
     deploy:
       mode: replicated
