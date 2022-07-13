@@ -1,8 +1,7 @@
 version: "3.3"
 services:
-  shinyproxy:
+  shinyproxy-toolbox:
     image: landscapedatacommons/shinyproxy-toolbox:2.6.1
-#    container_name: shinyproxy-toolbox
     ports:
       - 8080
     networks:
