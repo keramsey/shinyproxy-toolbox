@@ -1,12 +1,12 @@
 version: "3.3"
 services:
-  shinyproxy-toolbox:
+  shinyproxy:
     image: landscapedatacommons/shinyproxy-toolbox:2.6.1
     ports:
-      - 8080:8080
+      - 8092:8080
     networks:
-      - traefik-public
       - sp-net
+      - traefik-public
     deploy:
       mode: replicated
       replicas: 1
