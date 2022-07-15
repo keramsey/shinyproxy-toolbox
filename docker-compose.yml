@@ -3,7 +3,7 @@ services:
   shinyproxy:
     image: landscapedatacommons/shinyproxy-toolbox:2.6.1
     ports:
-      - 8092:8080
+      - 8080:8080
     networks:
       - sp-net
       - traefik-public
