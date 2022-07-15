@@ -51,5 +51,7 @@ services:
 networks:
   traefik-public:
     external: true
+    attachable: true
   sp-net:
     external: true
+    attachable: true
