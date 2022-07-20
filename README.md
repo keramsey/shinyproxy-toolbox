@@ -1,7 +1,7 @@
 # Shinyproxy Toolbox
-Containerized shinyproxy that serves Landscape Toolbox shiny apps written in R language
+Containerized shinyproxy serving R shiny apps containers
 ## Features
-- CI/CD workflow pushes/builds image on Docker Hub upon push
+- CI/CD workflow builds/pushes image to Docker Hub upon pull request
 - Deploys shinyproxy with shiny apps (under construction)
 ## Shiny apps
 - Balanced Design Tool
