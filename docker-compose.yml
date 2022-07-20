@@ -3,8 +3,8 @@ services:
   shinyproxy:
     image: landscapedatacommons/shinyproxy-toolbox:2.6.1
 #    build: .
-    ports:
-      - 8080
+#    ports:
+#      - 8080
     networks:
       - traefik-public
       - sp-net
@@ -29,8 +29,8 @@ services:
           - traefik.http.routers.shinyproxy-secured.entrypoints=https
           - traefik.http.routers.shinyproxy-secured.tls.certresolver=le # use the Let's Encrypt certificate we set up earlier
           - traefik.http.services.shinyproxy-secured.loadbalancer.server.port=8080 # ask Traefik to search for port 8080 of the shinyproxy service container
-          - traefik.http.services.shinyproxy-secured.loadbalancer.sticky=true
-          - traefik.http.services.shinyproxy-secured.loadbalancer.sticky.cookie.name=StickyCookie
+#          - traefik.http.services.shinyproxy-secured.loadbalancer.sticky=true
+#          - traefik.http.services.shinyproxy-secured.loadbalancer.sticky.cookie.name=StickyCookie
     volumes:
       - ./application.yml:/opt/shinyproxy/application.yml
       - /var/run/docker.sock:/var/run/docker.sock
