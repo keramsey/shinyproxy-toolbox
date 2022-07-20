@@ -12,25 +12,25 @@ Note: Requires docker-ce and docker-compose be installed and traefik stack deplo
 1. Install docker-ce on virtual server
 2. Create the folder to store docker configurations
 ```sh
-     mkdir /opt/docker
+mkdir /opt/docker
 ```
 3. Change permissions on folder
 ```sh
-     chown -R <username>:<username> /opt/drupal
-     chmod 775 /opt/drupal
+chown -R <username>:<username> /opt/drupal
+chmod 775 /opt/drupal
 ```
      Note: substitute <username> with sudo user account name
 4. Change to the folder
 ```sh
-     cd /opt/docker
+cd /opt/docker
 ```
 5. Clone the repository from github
 ```sh
-     git clone https://github.com/keramsey/shinyproxy-toolbox.git shinyproxy
+git clone https://github.com/keramsey/shinyproxy-toolbox.git shinyproxy
 ```
 6. Change to the shinyproxy folder
 ```sh
-     cd /opt/docker/shinyproxy
+cd /opt/docker/shinyproxy
 ```
 7. Copy the following files and folders to the current directory
      .env
@@ -41,19 +41,19 @@ Note: Requires docker-ce and docker-compose be installed and traefik stack deplo
      Contact: Systems or website administrator
 8. Create network for shinyproxy services
 ```sh
-     docker network create --driver=overlay sp-net
+docker network create --driver=overlay sp-net
 ```
 9. Deploy shinyproxy stack services
 ```sh
-     docker stack deploy -c<() shinyproxy
+docker stack deploy -c<() shinyproxy
 ```
 10. Verify stack was deployed
 ```sh
-      docker stack ls
+docker stack ls
 ```
 11. Verify stack services are all running
 ```sh
-      docker service ls
+docker service ls
 ```
 12. Open website in browser using APP_DOMAIN url stored in .env file
 
