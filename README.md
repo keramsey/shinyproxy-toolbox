@@ -4,11 +4,14 @@ Containerized shinyproxy that serves Landscape Toolbox shiny apps written in R l
 - Balanced Design Tool
 - Benchmark Exploration Tool
 ## Installation
-The following instructions describe how to install and deploy shinyproxy-toolbox and its tools
+Note: Requires the following be installed on host:
+          ubuntu 20.04 or other Linux distro
+          docker-ce
+          docker-compose
+          swarm manager node
+          traefik stack deployed
 
-Note: Requires docker-ce and docker-compose be installed and traefik stack deployed in swarm
-(see @ https://github.com/keramsey/traefik.git for traefik source code and README.md)
-
+The following instructions describe how to install and deploy shinyproxy-toolbox and its tools:
 1. Install docker-ce on virtual server
 2. Create the folder to store docker configurations
 ```sh
@@ -19,7 +22,7 @@ mkdir /opt/docker
 chown -R <username>:<username> /opt/drupal
 chmod 775 /opt/drupal
 ```
-     Note: substitute <username> with sudo user account name
+Note: Substitute <username> with sudo enabled user account name
 4. Change to the folder
 ```sh
 cd /opt/docker
@@ -56,6 +59,11 @@ docker stack ls
 docker service ls
 ```
 12. Open website in browser using APP_DOMAIN url stored in .env file
+
+## SSL/HTTPS
+Traefik stack is used as proxy for shinyproxy loadbalancer on port 8080
+
+Note: See traefik repository for source code and documentation at https://github.com/keramsey/traefik.git
 
 ## License
 MIT
