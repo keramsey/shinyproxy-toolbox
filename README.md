@@ -1,5 +1,5 @@
 # Shinyproxy Toolbox
-Containerized shinyproxy serving R shiny apps containers
+Containerized shinyproxy serving R shiny app containers
 ## Features
 - CI/CD workflow builds/pushes image to Docker Hub upon pull request
 - Deploys shinyproxy with shiny apps (under construction)
