@@ -24,7 +24,7 @@ mkdir /opt/docker
 chown -R user:user /opt/drupal
 chmod 775 /opt/drupal
 ```
->> Note: user must belong to sudo & docker groups
+>>**Note:** user must belong to sudo & docker groups
 
 4. Change to the folder
 ```sh
@@ -40,7 +40,7 @@ cd /opt/docker/shinyproxy
 ```
 >>Copy the .env file to the current directory from Systems share (\Docker\Restricted\shinyproxy-toolbox).
 
->>Note: contact systems or website administrator to access .env file.
+>>**Note:** contact systems or website administrator to access .env file.
 
 8. Create network for shinyproxy services
 ```sh
