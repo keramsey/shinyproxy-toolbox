@@ -24,7 +24,7 @@ mkdir /opt/docker
 chown -R user:user /opt/drupal
 chmod 775 /opt/drupal
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;Note: user member of sudo and docker groups
+>> Note: user must belong to sudo & docker groups
 
 4. Change to the folder
 ```sh
@@ -38,7 +38,9 @@ git clone https://github.com/keramsey/shinyproxy-toolbox.git shinyproxy
 ```sh
 cd /opt/docker/shinyproxy
 ```
-7. Copy the .env file to the current directory from Systems share (\Docker\Restricted\shinyproxy-toolbox). Contact the systems or website administrator to access .env file.
+>>Copy the .env file to the current directory from Systems share (\Docker\Restricted\shinyproxy-toolbox).
+
+>>Note: contact systems or website administrator to access .env file.
 
 8. Create network for shinyproxy services
 ```sh
@@ -60,6 +62,6 @@ docker service ls
 ## SSL/HTTPS
 Traefik stack is used as web proxy (ports 80,443) for the shinyproxy loadbalancer on port 8080
 
-**Note**: See repository for source code and documentation @ https://github.com/keramsey/traefik.git
+>>**Note**: See repository for source code and documentation @ https://github.com/keramsey/traefik.git
 ## License
 MIT
