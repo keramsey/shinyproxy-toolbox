@@ -1,10 +1,10 @@
-version: "3.3"
+version: "3"
 services:
   shinyproxy:
     image: landscapedatacommons/shinyproxy-toolbox:2.6.1
     build: .
     ports:
-      - 8080
+      - 8080:8080
     networks:
       - traefik-public
       - sp-net
