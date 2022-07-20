@@ -3,7 +3,7 @@ services:
   shinyproxy:
     image: landscapedatacommons/shinyproxy-toolbox:2.6.1
     build: .
-    expose:
+    ports:
       - 8080
     networks:
       - traefik-public
