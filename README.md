@@ -3,15 +3,14 @@ Containerized shinyproxy that serves Landscape Toolbox shiny apps written in R l
 ## Shiny apps
 - Balanced Design Tool
 - Benchmark Exploration Tool
-## Installation
-Note: Requires the following be installed on host:
-          ubuntu 20.04 or other Linux distro
-          docker-ce
-          docker-compose
-          swarm manager node
-          traefik stack deployed
-
-The following instructions describe how to install and deploy shinyproxy-toolbox and its tools:
+## Installation notes
+Requires the following on host:
+- ubuntu 20.04 or other Linux distro
+- docker-ce
+- docker-compose
+- swarm manager node
+- traefik stack deployed
+## Deploy shinyproxy-toolbox
 1. Install docker-ce on virtual server
 2. Create the folder to store docker configurations
 ```sh
@@ -19,10 +18,11 @@ mkdir /opt/docker
 ```
 3. Change permissions on folder
 ```sh
-chown -R <username>:<username> /opt/drupal
+chown -R user:user /opt/drupal
 chmod 775 /opt/drupal
 ```
-Note: Substitute <username> with sudo enabled user account name
+&nbsp;&nbsp;&nbsp;&nbsp;Note: user member of sudo and docker groups
+
 4. Change to the folder
 ```sh
 cd /opt/docker
@@ -35,20 +35,15 @@ git clone https://github.com/keramsey/shinyproxy-toolbox.git shinyproxy
 ```sh
 cd /opt/docker/shinyproxy
 ```
-7. Copy the following files and folders to the current directory
-     .env
+7. Copy the .env file to the current directory from Systems share (\Docker\Restricted\shinyproxy-toolbox). Contact the systems or website administrator to access .env file.
 
-     Note: The file (s) are on the Systems CIFS share at the following location:
-       Systems:\Docker\Restricted\shinyproxy-toolbox\
-
-     Contact: Systems or website administrator
 8. Create network for shinyproxy services
 ```sh
 docker network create --driver=overlay sp-net
 ```
 9. Deploy shinyproxy stack services
 ```sh
-docker stack deploy -c<() shinyproxy
+docker stack deploy -c<(docker-compose -f docker-compose.yml config) shinyproxy
 ```
 10. Verify stack was deployed
 ```sh
@@ -59,11 +54,9 @@ docker stack ls
 docker service ls
 ```
 12. Open website in browser using APP_DOMAIN url stored in .env file
-
 ## SSL/HTTPS
-Traefik stack is used as proxy for shinyproxy loadbalancer on port 8080
+Traefik stack is used as web proxy (ports 80,443) for the shinyproxy loadbalancer on port 8080
 
-Note: See traefik repository for source code and documentation at https://github.com/keramsey/traefik.git
-
+**Note**: See repository for source code and documentation @ https://github.com/keramsey/traefik.git
 ## License
 MIT
