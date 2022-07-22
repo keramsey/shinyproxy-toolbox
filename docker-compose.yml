@@ -1,14 +1,12 @@
 version: "3.3"
 services:
   shinyproxy:
-    image: landscapedatacommons/shinyproxy-toolbox:2.6.1
-    build: .
+    image: openanalytics/shinyproxy:2.6.1
     ports:
       - 8080:8080
     networks:
       - traefik-public
       - sp-net
-    env_file: .env
     deploy:
       mode: replicated
       replicas: 1
@@ -23,19 +21,19 @@ services:
           - traefik.constraint-label=traefik-public # assign the same label as traefik so it can be discovered
           - traefik.http.routers.shinyproxy.rule=Host(`${APP_DOMAIN?Variable not set}`) # listen to port 80 for request to APP_DOMAIN (use together with the line below)
           - traefik.http.routers.shinyproxy.entrypoints=http
-#          - traefik.http.middlewares.shinyproxy.redirectscheme.scheme=https # redirect traffic to https
-#          - traefik.http.middlewares.shinyproxy.redirectscheme.permanent=true # redirect traffic to https
-#          - traefik.http.routers.shinyproxy-secured.rule=Host(`${APP_DOMAIN?Variable not set}`) # listen to port 443 for request to APP_DOMAIN (use together with the line below)
-#          - traefik.http.routers.shinyproxy-secured.entrypoints=https
-#          - traefik.http.routers.shinyproxy-secured.tls.certresolver=le # use the Let's Encrypt certificate we set up earlier
+          - traefik.http.middlewares.shinyproxy.redirectscheme.scheme=https # redirect traffic to https
+          - traefik.http.middlewares.shinyproxy.redirectscheme.permanent=true # redirect traffic to https
+          - traefik.http.routers.shinyproxy-secured.rule=Host(`${APP_DOMAIN?Variable not set}`) # listen to port 443 for request to APP_DOMAIN (use together with the line below)
+          - traefik.http.routers.shinyproxy-secured.entrypoints=https
+          - traefik.http.routers.shinyproxy-secured.tls.certresolver=le # use the Let's Encrypt certificate we set up earlier
           - traefik.http.services.shinyproxy-secured.loadbalancer.server.port=8080 # ask Traefik to search for port 8080 of the shinyproxy service container
 #          - traefik.http.services.shinyproxy-secured.loadbalancer.sticky=true
 #          - traefik.http.services.shinyproxy-secured.loadbalancer.sticky.cookie.name=StickyCookie
     volumes:
       - ./application.yml:/opt/shinyproxy/application.yml
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./shinyproxy-logs/server:/log
-      - ./shinyproxy-logs/container:/container-logs
+#      - ./shinyproxy-logs/server:/log
+#      - ./shinyproxy-logs/container:/container-logs
 
   balanced-design-tool:
     image: landscapedatacommons/balanced-design-tool:4.2.1
