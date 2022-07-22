@@ -3,7 +3,7 @@ services:
   shinyproxy:
     image: openanalytics/shinyproxy:2.6.1
     ports:
-      - 8080:8080
+      - 8080
     networks:
       - traefik-public
       - sp-net
@@ -32,8 +32,6 @@ services:
     volumes:
       - ./application.yml:/opt/shinyproxy/application.yml
       - /var/run/docker.sock:/var/run/docker.sock
-#      - ./shinyproxy-logs/server:/log
-#      - ./shinyproxy-logs/container:/container-logs
 
   balanced-design-tool:
     image: landscapedatacommons/balanced-design-tool:4.2.1
