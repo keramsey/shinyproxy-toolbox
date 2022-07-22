@@ -2,7 +2,7 @@ version: "3.9"
 services:
   shinyproxy:
     image: openanalytics/shinyproxy:2.6.1
-    ports:
+    expose:
       - 8080
     networks:
       - traefik-public
