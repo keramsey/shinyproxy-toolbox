@@ -3,7 +3,7 @@ services:
   shinyproxy:
     image: openanalytics/shinyproxy:2.6.1
     ports:
-      - 8080
+      - 8080:8080
     networks:
       - traefik-public
       - sp-net
