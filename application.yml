@@ -50,13 +50,15 @@ proxy:
 #      container-network: sp-net
     - id: balanced-design-tool
       display-name: Balanced Design Tool
-      container-cmd: ["R", "-e", "shiny::runApp('/home/docker/balanced-design-tool')"]
+#      container-cmd: ["R", "-e", "shiny::runApp('/home/docker/balanced-design-tool')"]
+      container-cmd: ["R", "-e", "shinyproxy::run_balanced-design-tool()"]
       container-image: landscapedatacommons/balanced-design-tool:4.2.1 # this need to be replaced with your own Shiny app in production
       access-groups: admins # give specific access right to a group
       container-network: sp-net
     - id: benchmark-exploration-tool
       display-name: Benchmark Exploration Tool
-      container-cmd: ["R", "-e", "shiny::runApp('/home/docker/benchmark-exploration-tool')"]
+#      container-cmd: ["R", "-e", "shiny::runApp('/home/docker/benchmark-exploration-tool')"]
+      container-cmd: ["R", "-e", "shinyproxy::run_benchmark-exploration-tool()"]
       container-image: landscapedatacommons/benchmark-exploration-tool:4.2.1 # this need to be replaced with your own Shiny app in production
       access-groups: admins # give specific access right to a group
       container-network: sp-net
