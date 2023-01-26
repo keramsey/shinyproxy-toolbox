@@ -1,67 +1,31 @@
-# Shinyproxy Toolbox
-Containerized shinyproxy serving R shiny app containers
-## Features
-- CI/CD workflow builds/pushes image to Docker Hub upon pull request
-- Deploys shinyproxy with shiny apps (under construction)
-## Shiny apps
-- Balanced Design Tool
-- Benchmark Exploration Tool
-## Installation notes
-Requires the following on host:
-- ubuntu 20.04 or other Linux distro
-- docker-ce
-- docker-compose
-- swarm manager node
-- traefik stack deployed
-## Deploy shinyproxy-toolbox
-1. Install docker-ce on virtual server
-2. Create the folder to store docker configurations
-```sh
-mkdir /opt/docker
-```
-3. Change permissions on folder
-```sh
-chown -R user:user /opt/drupal
-chmod 775 /opt/drupal
-```
->>**Note:** user must belong to sudo & docker groups
+# Landscape Toolbox Shinyproxy System
+## Network diagram
+![service diagram](https://github.com/JornadaExperimentalRange/sp-toolbox/blob/master/network-shinyproxy.svg)
+## Stack diagram
+Shinyproxy load balancer that serves R shiny tools
 
-4. Change to the folder
-```sh
-cd /opt/docker
-```
-5. Clone the repository from github
-```sh
-git clone https://github.com/keramsey/shinyproxy-toolbox.git shinyproxy
-```
-6. Change to the shinyproxy folder
-```sh
-cd /opt/docker/shinyproxy
-```
->>Copy the .env file to the current directory from Systems share (\Docker\Restricted\shinyproxy-toolbox).
+![service diagram](https://github.com/JornadaExperimentalRange/sp-toolbox/blob/master/stack-toolbox.svg)
+## Image (landscapedatacommons/sp-toolbox)
+Load balancer that serve R shiny tools
 
->>**Note:** contact systems or website administrator to access .env file.
-
-8. Create network for shinyproxy services
-```sh
-docker network create --driver=overlay sp-net
-```
-9. Deploy shinyproxy stack services
-```sh
-docker stack deploy -c<(docker-compose -f docker-compose.yml config) shinyproxy
-```
-10. Verify stack was deployed
-```sh
-docker stack ls
-```
-11. Verify stack services are all running
-```sh
-docker service ls
-```
-12. Open website in browser using APP_DOMAIN url stored in .env file
-## SSL/HTTPS
-Traefik stack is used as web proxy (ports 80,443) for the shinyproxy loadbalancer on port 8080
-
->>**Note**: See repository for source code and documentation @ https://github.com/keramsey/traefik.git
-## License
-MIT
+## Integrated stack services
+Swarm stack services using shinyproxy, traefik, swarmpit and grafana/influxdb to serve R shiny apps. Images are on Docker Hub. Stack services should be deployed in the following order (excluding tools, which must be pulled from Docker Hub to the host before deploying Toolbox service):
+## Dashboard
+- Image: landscapedatacommons/sp-dashboard:2.6.1
+- Description: Web proxy/load balancer dashboard (traefik)
+## Toolbox
+- Image: landscapedatacommons/sp-toolbox:2.6.1
+- Description: Toolbox of R shiny apps (shinyproxy)
+> ## Tools
+>- ### Balanced Design Tool
+>>- Image: landscapedatacommons/balanced-design-tool:4.2.1
+>>- Description: An R Shiny tool for generating spatially balanced sample designs using spsurvey::grts()
+>- ### Benchmark Exploration Tool
+>>- Image: landscapedatacommons/benchmark-exploration-tool:4.2.1
+>>- Description: Creating histograms of indicator values with benchmarks
+## Manage
+- Image: landscapedatacommons/sp-manage:2.6.1
+- Description: Swarm management (swarmpit)
+## Monitor
+- Image: landscapedatacommons/sp-monitor:2.6.1
+- Description: Usage statistics (grafana/influxdb)
