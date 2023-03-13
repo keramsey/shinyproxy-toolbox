@@ -28,5 +28,5 @@ docker network create --driver=overlay --attachable shiny-net
 ```
 4. Deploy stack
 ```sh
-TOOLBOX_DOMAIN=toolbox.jornada-stack.nmsu.edu docker stack deploy -c toolbox.yml shinyproxy
+TOOLBOX_DOMAIN=toolbox.jornada-stack.nmsu.edu docker stack deploy -c toolbox.yml toolbox
 ```
