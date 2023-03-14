@@ -41,5 +41,5 @@ jobs:
 #          username: ${{ secrets.SERVER_USERNAME }}
 #          password: ${{ secrets.SERVER_PASSWORD }}
 #          script: |
-#            docker service update shinyproxy_shinyproxy \
+#            docker service update toolbox_shinyproxy \
 #            --image=docker.io/landscapedatacommons/toolbox:2.6.1
