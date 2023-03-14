@@ -7,7 +7,7 @@ services:
     build:
       context: .
     ports:
-      - 8075
+      - 8075:8075
     networks:
       - public
       - shiny-net
