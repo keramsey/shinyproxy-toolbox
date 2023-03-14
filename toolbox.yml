@@ -7,7 +7,7 @@ services:
     build:
       context: .
     ports:
-      - 8075
+      - 8080
     networks:
       - public
       - shiny-net
@@ -35,7 +35,7 @@ services:
           - traefik.http.routers.shinyproxy-secured.rule=Host(`${TOOLBOX_DOMAIN? TOOLBOX_DOMAIN variable not set}`) # listen to port 443 for request to TOOLBOX_DOMAIN (use together with the line below)
           - traefik.http.routers.shinyproxy-secured.entrypoints=https
           - traefik.http.routers.shinyproxy-secured.tls.certresolver=le # use the Let's Encrypt certificate we set up earlier
-          - traefik.http.services.shinyproxy-secured.loadbalancer.server.port=8075 # ask Traefik to search for port 8080 of the shinyproxy service container
+          - traefik.http.services.shinyproxy-secured.loadbalancer.server.port=8080 # ask Traefik to search for port 8080 of the shinyproxy service container
 
   balanced-design-tool:
     image: landscapedatacommons/balanced-design-tool:4.2.1
